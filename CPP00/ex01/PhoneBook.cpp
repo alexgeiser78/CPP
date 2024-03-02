@@ -10,4 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "PhoneBook.hpp"
 
+PhoneBook::PhoneBook(void)
+{
+    
+}
+
+PhoneBook::~PhoneBook(void)
+{
+    return ;
+}
+
+void	PhoneBook::add(void)
+{
+    return ;
+}
+
+void	PhoneBook::search(void)
+{
+    return ;
+}
+
+void	PhoneBook::print(void)
+{
+    return ;
+}
+
+Contact	PhoneBook::getUser(int index)
+{
+    return(users[index]);
+}

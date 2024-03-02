@@ -15,5 +15,22 @@
 
 #include <iostream> //cin, cout
 #include <string> //string
+#include "Contact.hpp"
+
+class PhoneBook
+{
+    private:
+        Contact users[8];
+        //int     indux;
+    public:
+        PhoneBook(void); //Constructor
+        ~PhoneBook(void); //Destructor
+
+        void    add(void);
+        void    search(void);
+        void    print(void);
+
+        Contact getUser(int index);
+};
 
 #endif

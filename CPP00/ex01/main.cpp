@@ -14,17 +14,28 @@
 
 int main(void)
 {
-    std::string line;
-
-    std::cout << "$> ";
-
-    std::getline(std::cin, line);
-    if (line == "ADD")
-        std::cout << "ADD" << std::endl;
-    else if (line == "SEARCH")
-        std::cout << "SEARCH" << std::endl;
-    else if (line == "EXIT")
-        std::cout << "EXIT" << std::endl;
-
+    PhoneBook phonebook; //Create an instance of the PhoneBook class    
+    std::string line; //Create a string variable called line
+  
+    while(line != "EXIT")
+    {
+        std::cout << "$> ";
+        std::getline(std::cin, line);
+        if (line == "ADD")
+        {
+            std::cout << "ADD" << std::endl;
+            phonebook.add();
+        }
+        else if (line == "SEARCH")
+        {
+            std::cout << "SEARCH" << std::endl;
+            phonebook.search();
+        }
+        if (std::cin.eof())
+        {
+            std::cout << std::endl;
+            return (0);
+        }
+    }
     return (0);
 }

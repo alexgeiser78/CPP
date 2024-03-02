@@ -19,6 +19,8 @@
 class Contact
 {
     public:
+        Contact(void);
+		~Contact(void);
 
     private:
         std::string first_name;
