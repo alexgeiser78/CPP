@@ -15,7 +15,7 @@ NAME = phonebook
 CC		= c++
 FLAGS	= -Wall -Wextra -Werror -std=c++98
 RM		= rm -rf
-SRC		= phonebook.cpp main.cpp Contact.cpp
+SRC		= main.cpp PhoneBook.cpp PhoneBookUtils.cpp Contact.cpp 
 
 GREEN       =   \033[1;32m
 YELLOW      =   \033[1;33m

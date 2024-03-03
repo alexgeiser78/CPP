@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include "PhoneBook.hpp"
 
 class Contact
 {
@@ -22,12 +23,28 @@ class Contact
         Contact(void);
 		~Contact(void);
 
+        std::string get_firstname(void);
+        void        set_firstname(std::string first_name);
+        std::string get_lastname(void);
+        void        set_lastname(std::string last_name);
+        std::string get_nickname(void);
+        void        set_nickname(std::string nickname);
+        std::string get_phonenumber(void);
+        void        set_phonenumber(std::string phone_number);
+        std::string get_darkestsecret(void);
+        void        set_darkestsecret(std::string darkest_secret);
+
+        int search_flag(Contact users[8]);
+
+        std::string set_width(std::string str, unsigned long width);
+
     private:
         std::string first_name;
         std::string last_name;
         std::string nickname;
         std::string phone_number;
         std::string darkest_secret;
+
 };
 
 #endif

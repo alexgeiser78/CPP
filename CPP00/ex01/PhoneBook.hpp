@@ -16,21 +16,28 @@
 #include <iostream> //cin, cout
 #include <string> //string
 #include "Contact.hpp"
+//#include "PhoneBookUtils.hpp"
 
 class PhoneBook
 {
     private:
         Contact users[8];
-        //int     indux;
+        int     indux;
+
     public:
         PhoneBook(void); //Constructor
         ~PhoneBook(void); //Destructor
 
         void    add(void);
         void    search(void);
-        void    print(void);
+        void    print(Contact user);
 
-        Contact getUser(int index);
+
+        Contact get_user(int index);
+
 };
+            int    search_flag(Contact users[8]);
+        std::string set_width(std::string str, unsigned long width);
+    
 
 #endif
