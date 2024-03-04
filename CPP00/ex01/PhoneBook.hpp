@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-#define PHONEBOOK_H
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
+#include "Contact.hpp"
 #include <iostream> //cin, cout
 #include <string> //string
-#include "Contact.hpp"
-//#include "PhoneBookUtils.hpp"
+#include "PhoneBookUtils.hpp"
 
 class PhoneBook
 {
@@ -24,20 +24,21 @@ class PhoneBook
         Contact users[8];
         int     indux;
 
-    public:
-        PhoneBook(void); //Constructor
-        ~PhoneBook(void); //Destructor
+        public:
+            PhoneBook(void); //Constructor
+            ~PhoneBook(void); //Destructor
 
-        void    add(void);
-        void    search(void);
-        void    print(Contact user);
+            void    add(void);
+            void    search(void);
+            void    print(Contact user);
 
 
-        Contact get_user(int index);
+            Contact get_user(int index);
+      
 
 };
-            int    search_flag(Contact users[8]);
-        std::string set_width(std::string str, unsigned long width);
+            
+          
     
 
 #endif

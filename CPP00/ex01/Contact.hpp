@@ -10,15 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_HPP_
-# define CONTACT_HPP_
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
 #include <iostream>
 #include <string>
-#include "PhoneBook.hpp"
+
 
 class Contact
 {
+
+    private:
+        std::string first_name;
+        std::string last_name;
+        std::string nickname;
+        std::string phone_number;
+        std::string darkest_secret;
+
     public:
         Contact(void);
 		~Contact(void);
@@ -34,17 +42,11 @@ class Contact
         std::string get_darkestsecret(void);
         void        set_darkestsecret(std::string darkest_secret);
 
-        int search_flag(Contact users[8]);
+        //int search_flag(Contact users[8]);
 
-        std::string set_width(std::string str, unsigned long width);
+   // std::string set_width(std::string str, unsigned long width);
 
-    private:
-        std::string first_name;
-        std::string last_name;
-        std::string nickname;
-        std::string phone_number;
-        std::string darkest_secret;
-
+    
 };
 
 #endif

@@ -11,9 +11,12 @@
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+#include "PhoneBookUtils.hpp"
+
 
 PhoneBook::PhoneBook(void)
 {
+    this->indux = 0; //initialize the index
     std::cout << "Phonebook class constructed" << std::endl;
 }
 
@@ -28,10 +31,8 @@ void	PhoneBook::add(void)
 
     str = "";
     if (this->indux > 7)
-    {
-        std::cout << "Warning, user " << this->users[this->indux % 8].get_firstname() << "will be destroyed" << std::endl;
-        
-        while (!std::cin.eof() && str == "")
+        std::cout << "Warning, user " << this->users[this->indux % 8].get_firstname() << " will be destroyed" << std::endl;
+    while (!std::cin.eof() && str == "")
             {
                 std::cout << "Enter first name: ";
                 if (std::getline(std::cin, str) && str != "")
@@ -42,7 +43,7 @@ void	PhoneBook::add(void)
         str = "";   
         while (!std::cin.eof() && str == "")
             {
-                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << "last name:";
+                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << " last name:";
                 if (std::getline(std::cin, str) && str != "")
                     this->users[this->indux % 8].set_lastname(str);
                 else
@@ -51,7 +52,7 @@ void	PhoneBook::add(void)
         str = "";
         while (!std::cin.eof() && str == "")
             {
-                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << "nickname:";
+                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << " nickname:";
                 if (std::getline(std::cin, str) && str != "")
                     this->users[this->indux % 8].set_nickname(str);
                 else
@@ -60,7 +61,7 @@ void	PhoneBook::add(void)
         str = "";
         while (!std::cin.eof() && str == "")
             {
-                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << "phone number:";
+                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << " phone number:";
                 if (std::getline(std::cin, str) && str != "")
                     this->users[this->indux % 8].set_phonenumber(str);
                 else
@@ -69,18 +70,19 @@ void	PhoneBook::add(void)
         str = "";
         while (!std::cin.eof() && str == "")
             {
-                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << "darkest secret:";
+                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << " darkest secret:";
                 if (std::getline(std::cin, str) && str != "")
                 {
                     this->users[this->indux % 8].set_darkestsecret(str);
-                    std::cout << "User " << this->users[this->indux % 8].get_firstname() << "added" << std::endl;
+                    std::cout << "User " << this->users[this->indux % 8].get_firstname() << " added" << std::endl;
                 }
                 else
                     std::cout << "Invalid input" << std::endl;
             }
         this->indux++;
-    }
+    
 }
+
 
 void	PhoneBook::print(Contact user)
 {
@@ -96,6 +98,7 @@ void	PhoneBook::print(Contact user)
     std::cout << "Phone number: " << user.get_phonenumber() << std::endl;
     std::cout << "Darkest secret: " << user.get_darkestsecret() << std::endl;
 }
+
 
 void	PhoneBook::search(void)
 {

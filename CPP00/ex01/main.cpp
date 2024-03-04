@@ -14,7 +14,7 @@
 
 int main(void)
 {
-    PhoneBook phonebook; //Create an instance of the PhoneBook class    
+    PhoneBook annuaire; //Create an instance of the PhoneBook class    
     std::string line; //Create a string variable called line
   
     while(line != "EXIT")
@@ -24,12 +24,12 @@ int main(void)
         if (line == "ADD")
         {
             std::cout << "ADD" << std::endl;
-            phonebook.add();
+            annuaire.add();
         }
         else if (line == "SEARCH")
         {
             std::cout << "SEARCH" << std::endl;
-            phonebook.search();
+            annuaire.search();
         }
         if (std::cin.eof())
         {

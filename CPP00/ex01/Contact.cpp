@@ -12,6 +12,8 @@
 
 #include "Contact.hpp"
 
+
+
 Contact::Contact(void)
 {
     std::cout << "Contact class constructed" << std::endl;

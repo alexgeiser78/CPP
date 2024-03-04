@@ -1,5 +1,6 @@
 #include "PhoneBook.hpp"
 
+
 std::string set_width(std::string str, unsigned long width)  //width of 10 max
 {
     if (str.length() > width)
@@ -20,9 +21,9 @@ int	search_flag(Contact users[8])
     {
         if (users[i].get_firstname() != "")
         {
-            std::cout << users[i].set_width(users[i].get_firstname(), 10) << "|";
-            std::cout << users[i].set_width(users[i].get_lastname(), 10) << "|";
-            std::cout << users[i].set_width(users[i].get_nickname(), 10) << std::endl;
+            std::cout << set_width(users[i].get_firstname(), 10) << "|";
+            std::cout << set_width(users[i].get_lastname(), 10) << "|";
+            std::cout << set_width(users[i].get_nickname(), 10) << "|" << std::endl;
         }
         i++;
     }
