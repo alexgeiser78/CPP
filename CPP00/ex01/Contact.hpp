@@ -40,13 +40,7 @@ class Contact
         std::string get_phonenumber(void);
         void        set_phonenumber(std::string phone_number);
         std::string get_darkestsecret(void);
-        void        set_darkestsecret(std::string darkest_secret);
-
-        //int search_flag(Contact users[8]);
-
-   // std::string set_width(std::string str, unsigned long width);
-
-    
+        void        set_darkestsecret(std::string darkest_secret);    
 };
 
 #endif

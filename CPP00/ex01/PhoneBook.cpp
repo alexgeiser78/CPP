@@ -17,12 +17,10 @@
 PhoneBook::PhoneBook(void)
 {
     this->indux = 0; //initialize the index
-    std::cout << "Phonebook class constructed" << std::endl;
 }
 
 PhoneBook::~PhoneBook(void)
 {
-   std::cout << "Phonebook class destructed" << std::endl;
 }
 
 void	PhoneBook::add(void)
@@ -43,7 +41,7 @@ void	PhoneBook::add(void)
         str = "";   
         while (!std::cin.eof() && str == "")
             {
-                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << " last name:";
+                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << " last name: ";
                 if (std::getline(std::cin, str) && str != "")
                     this->users[this->indux % 8].set_lastname(str);
                 else
@@ -52,7 +50,7 @@ void	PhoneBook::add(void)
         str = "";
         while (!std::cin.eof() && str == "")
             {
-                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << " nickname:";
+                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << " nickname: ";
                 if (std::getline(std::cin, str) && str != "")
                     this->users[this->indux % 8].set_nickname(str);
                 else
@@ -61,7 +59,7 @@ void	PhoneBook::add(void)
         str = "";
         while (!std::cin.eof() && str == "")
             {
-                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << " phone number:";
+                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << " phone number: ";
                 if (std::getline(std::cin, str) && str != "")
                     this->users[this->indux % 8].set_phonenumber(str);
                 else
@@ -70,23 +68,21 @@ void	PhoneBook::add(void)
         str = "";
         while (!std::cin.eof() && str == "")
             {
-                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << " darkest secret:";
+                std::cout << "Enter " << this->users[this->indux % 8].get_firstname() << " darkest secret: ";
                 if (std::getline(std::cin, str) && str != "")
                 {
                     this->users[this->indux % 8].set_darkestsecret(str);
-                    std::cout << "User " << this->users[this->indux % 8].get_firstname() << " added" << std::endl;
+                    std::cout << "User " << this->users[this->indux % 8].get_firstname() << " added [" << this->indux % 8 + 1 << "/8]" << std::endl;
                 }
                 else
                     std::cout << "Invalid input" << std::endl;
             }
-        this->indux++;
-    
+        this->indux++; 
 }
 
 
 void	PhoneBook::print(Contact user)
 {
-    std::cout << "Phonebook:" << std::endl;
     if (!user.get_firstname().length())
     {
         std::cout << "Failed to get info for this contact" << std::endl;
@@ -108,15 +104,26 @@ void	PhoneBook::search(void)
         std::cout << "No users in the phonebook" << std::endl;
         return ;
     }
-    if(std::cin.eof())
-    {
-        this->print(this->users[str[0] - 1 - '0']); //-1 ? 
-    }
+    while (!std::cin.eof())
+	{
+		std::cout << "Select an index: ";
+		if (std::getline(std::cin, str) && str != "")
+		{
+			if (str.length() == 1 && str[0] >= '1' && str[0] <= '8' && \
+					this->users[str[0] - 1 - '0'].get_firstname().length())
+				break ;
+		}
+		if (str != "")
+			std::cout << "Invalid index!" << std::endl;
+	}
+	if (!std::cin.eof())
+		this->print(this->users[str[0] - 1 - '0']);
 }
+
 
 
 
 Contact	PhoneBook::get_user(int index)
 {
-    return(users[index]);
+    return(this->users[index % 8]);
 }

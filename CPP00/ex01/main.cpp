@@ -23,12 +23,10 @@ int main(void)
         std::getline(std::cin, line);
         if (line == "ADD")
         {
-            std::cout << "ADD" << std::endl;
             annuaire.add();
         }
         else if (line == "SEARCH")
         {
-            std::cout << "SEARCH" << std::endl;
             annuaire.search();
         }
         if (std::cin.eof())

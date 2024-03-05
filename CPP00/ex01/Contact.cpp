@@ -16,12 +16,10 @@
 
 Contact::Contact(void)
 {
-    std::cout << "Contact class constructed" << std::endl;
 }
 
 Contact::~Contact(void)
 {
-    std::cout << "Contact class destructed" << std::endl;
 }
 
 std::string Contact::get_firstname(void)

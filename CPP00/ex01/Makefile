@@ -12,10 +12,11 @@
 
 NAME = phonebook
 
-CC		= c++
+CC		= g++
 FLAGS	= -Wall -Wextra -Werror -std=c++98
 RM		= rm -rf
-SRC		= main.cpp PhoneBook.cpp PhoneBookUtils.cpp Contact.cpp 
+SRC		= main.cpp PhoneBook.cpp PhoneBookUtils.cpp Contact.cpp
+OBJ		= $(SRC:.cpp=.o)
 
 GREEN       =   \033[1;32m
 YELLOW      =   \033[1;33m
@@ -24,19 +25,19 @@ NO_COLOR    =   \033[0m
 
 all: $(NAME)
 
-$(NAME): 
+$(NAME): $(OBJ)
 	@printf "$(YELLOW)- Compiling $(NAME)... $(NO_COLOR)\n"
-	@ $(CC) $(FLAGS) $(SRC) -o $(NAME)
-	@printf "$(GREEN)- Executable ready.\n$(NO_COLOR)"
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	@printf "$(GREEN)- Executable ready\n$(NO_COLOR)"
 
 clean:
-	@$(RM) $(NAME)
-	@printf "$(RED)- Executable removed.$(NO_COLOR)\n"
+	@$(RM) $(OBJ)
+	@printf "$(RED)- Objects removed$(NO_COLOR)\n"
 
-fclean:
+fclean: clean
 	@$(RM) $(NAME)
-	@printf "$(YELLOW)- Executable removed.$(NO_COLOR)\n"
+	@printf "$(YELLOW)- Executable removed$(NO_COLOR)\n"
 
 re: clean all
 
-.PHONY: all clean re
+.PHONY: all clean re fclean
