@@ -27,7 +27,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@printf "$(YELLOW)- Compiling $(NAME)... $(NO_COLOR)\n"
-	@ $(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 	@printf "$(GREEN)- Executable ready.\n$(NO_COLOR)"
 
 clean:
@@ -40,4 +40,4 @@ fclean: clean
 
 re: clean all
 
-.PHONY: all clean re
+.PHONY: all clean re fclean
