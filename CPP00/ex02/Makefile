@@ -5,17 +5,17 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ageiser <ageiser@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/24 19:07:39 by ageiser           #+#    #+#              #
-#    Updated: 2024/02/24 19:07:48 by ageiser          ###   ########.fr        #
+#    Created: 2024/02/27 18:29:02 by ageiser           #+#    #+#              #
+#    Updated: 2024/02/27 18:29:06 by ageiser          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = phonebook
 
-CC		= c++
+CC		= g++
 FLAGS	= -Wall -Wextra -Werror -std=c++98
 RM		= rm -rf
-SRC		= Megaphone.cpp
+SRC		= Account.cpp tests.cpp
 OBJ		= $(SRC:.cpp=.o)
 
 GREEN       =   \033[1;32m
@@ -28,7 +28,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@printf "$(YELLOW)- Compiling $(NAME)... $(NO_COLOR)\n"
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-	@printf "$(GREEN)- Executable ready.\n$(NO_COLOR)"
+	@printf "$(GREEN)- Executable ready\n$(NO_COLOR)"
 
 clean:
 	@$(RM) $(OBJ)
