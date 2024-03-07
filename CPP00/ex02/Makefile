@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phonebook
+NAME = account
 
 CC		= g++
 FLAGS	= -Wall -Wextra -Werror -std=c++98
