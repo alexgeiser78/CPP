@@ -38,13 +38,13 @@ int		main( void ) {
 	ints_t::iterator	wit_end		= withdrawals.end();
 
 	Account::displayAccountsInfos();
-	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) ); //std::mem_fun_ref == std::for_each in c++11
+	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) ); //std::mem_fun_ref == std::for_each in c++11 //aplies the func displayStatus to each account int the range of acc_begin and acc_end
 
-	for ( acc_int_t it( acc_begin, dep_begin );
-		  it.first != acc_end && it.second != dep_end;
+	for ( acc_int_t it( acc_begin, dep_begin );   // acc_int_t is a pair of iterators
+		  it.first != acc_end && it.second != dep_end; //while the iterators are not at the end of the range // it fisrt = acc_begin, it second = dep_begin
 		  ++(it.first), ++(it.second) ) {
 
-		(*(it.first)).makeDeposit( *(it.second) );
+		(*(it.first)).makeDeposit( *(it.second) ); // on the account, make a deposit of the value of the deposit iterator
 	}
 
 	Account::displayAccountsInfos();
