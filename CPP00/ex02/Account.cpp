@@ -12,14 +12,14 @@ int Account::_totalNbDeposits = 0;
 
 int Account::_totalNbWithdrawals = 0;
 
-Account::Account(int initial_amount) //constructor to assign the amount to the account
+Account::Account(int initial_deposit) //constructor to assign the amount to the account
 {
     std::cout << "constructor";
     this->_nbDeposits = 0;
     this->_nbWithdrawals = 0;
     this->_accountIndex = this->getNbAccounts();
-    this->_amount = initial_amount;
-    Account::_totalAmount += initial_amount;
+    this->_amount = initial_deposit;
+    Account::_totalAmount += initial_deposit;
     
     Account::_displayTimestamp();
     std::cout << "index:" << this->_accountIndex;
@@ -31,16 +31,20 @@ Account::Account(int initial_amount) //constructor to assign the amount to the a
 
 Account::~Account()
 {
-    std::cout << "destructor";
-    Account::_displayTimestamp();
-    std::cout << "index:" << this->_accountIndex;
+   std::cout << "destructor";
+	//Account::_nbAccounts--;
+
+	Account::_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex;
     std::cout << ";amount:" << this->checkAmount();
     std::cout << ";closed";
     std::cout << std::endl;
     Account::_nbAccounts--;
+}
+
 
     
-}
+
 
 void Account::_displayTimestamp(void)
 {
