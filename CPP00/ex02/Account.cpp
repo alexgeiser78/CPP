@@ -14,7 +14,6 @@ int Account::_totalNbWithdrawals = 0;
 
 Account::Account(int initial_deposit) //constructor to assign the amount to the account
 {
-    std::cout << "constructor";
     this->_nbDeposits = 0;
     this->_nbWithdrawals = 0;
     this->_accountIndex = this->getNbAccounts();
@@ -31,9 +30,6 @@ Account::Account(int initial_deposit) //constructor to assign the amount to the 
 
 Account::~Account()
 {
-   std::cout << "destructor";
-	//Account::_nbAccounts--;
-
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex;
     std::cout << ";amount:" << this->checkAmount();
@@ -41,10 +37,6 @@ Account::~Account()
     std::cout << std::endl;
     Account::_nbAccounts--;
 }
-
-
-    
-
 
 void Account::_displayTimestamp(void)
 {
@@ -56,7 +48,6 @@ void Account::_displayTimestamp(void)
 
 void Account::displayAccountsInfos(void)
 {
-    std::cout << "display accounts infos";
     Account::_displayTimestamp();
     std::cout << "account" << Account::getNbAccounts(); 
     std::cout << ";total:" << Account::getTotalAmount();
@@ -67,7 +58,6 @@ void Account::displayAccountsInfos(void)
 
 void Account::makeDeposit(int deposit)
 {
-    std::cout << "make deposit";
     this->_nbDeposits++; //increment the number of deposits
     Account::_displayTimestamp();
     std::cout << "index:" << this->_accountIndex;
@@ -79,14 +69,10 @@ void Account::makeDeposit(int deposit)
     this->_amount += deposit; //add the deposit to the amount
     Account::_totalNbDeposits++; //increment the total number of deposits
     Account::_totalAmount += deposit; //add the deposit to the total amount
-    
-    //this->_nbAccounts++;
-
 }
 
 bool Account::makeWithdrawal(int withdrawal)
 {
-    std::cout << "make withdrawal";
     Account::_displayTimestamp();
     std::cout << "index:" << this->_accountIndex;
     std::cout << ";p_amount:" << this->_amount;
@@ -109,7 +95,6 @@ bool Account::makeWithdrawal(int withdrawal)
 
 void Account::displayStatus() const
 {
-    std::cout << "display status";
     Account::_displayTimestamp();
     std::cout << "index:" << this->_accountIndex;
     std::cout << ";amount:" << this->checkAmount();
