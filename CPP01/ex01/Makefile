@@ -15,7 +15,7 @@ NAME = zombie
 CC		= g++
 FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 RM		= rm -rf
-SRC		= main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
+SRC		= main.cpp Zombie.cpp ZombieHorde.cpp
 OBJ		= $(SRC:.cpp=.o)
 
 GREEN       =   \033[1;32m
