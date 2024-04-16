@@ -10,12 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = violence
+NAME = losers
 
 CC		= g++
 FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 RM		= rm -rf
-SRC		= main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+SRC		= main.cpp
 OBJ		= $(SRC:.cpp=.o)
 
 GREEN       =   \033[1;32m
