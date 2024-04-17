@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ageiser <ageiser@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 19:40:31 by ageiser           #+#    #+#             */
-/*   Updated: 2024/04/17 19:40:32 by ageiser          ###   ########.fr       */
+/*   Created: 2024/04/17 19:43:01 by ageiser           #+#    #+#             */
+/*   Updated: 2024/04/17 19:43:02 by ageiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
+#ifndef HARL_HPP
 
-class	HumanA
+# define HARL_HPP
+
+# include <iostream>
+
+
+class	Harl
 {
-    private:
-    std::string	_name;
-	Weapon		&_weapon; //reference to weapon, ref is not null and cannot be changed
-
-    public:
-
-    HumanA(std::string name, Weapon &weapon);
-    ~HumanA(void);
-    void	attack(void);
+	private:
+		void	debug(void);
+		void	info(void);
+		void	warning(void);
+		void	error(void);
+	public:
+		Harl(void);
+		~Harl(void);
+		void	complain(std::string level);
 };
+
+
+
+
+#endif

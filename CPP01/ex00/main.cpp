@@ -24,7 +24,7 @@ int	main(void)
 	Zombie	*z = newZombie("Alex:");
 	z->announce();
     //z = newZombie("Someone else:"); // This doesn't destroy the previous Zombie object
-	randomChump("Someone else:");
+	randomChump("Foo:");
 	delete z; // destroy the heap, destructor destroys the stack
 }
 

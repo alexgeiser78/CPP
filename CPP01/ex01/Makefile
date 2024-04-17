@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = zombie
+NAME = zombie2
 
 CC		= g++
 FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address

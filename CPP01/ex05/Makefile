@@ -10,12 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = brain
+NAME = harl
 
 CC		= g++
 FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 RM		= rm -rf
-SRC		= main.cpp
+SRC		= main.cpp Harl.cpp
 OBJ		= $(SRC:.cpp=.o)
 
 GREEN       =   \033[1;32m

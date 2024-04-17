@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ageiser <ageiser@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 19:40:31 by ageiser           #+#    #+#             */
-/*   Updated: 2024/04/17 19:40:32 by ageiser          ###   ########.fr       */
+/*   Created: 2024/04/17 19:43:13 by ageiser           #+#    #+#             */
+/*   Updated: 2024/04/17 19:43:15 by ageiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
+#include "Harl.hpp"
 
-class	HumanA
+int	main(void)
 {
-    private:
-    std::string	_name;
-	Weapon		&_weapon; //reference to weapon, ref is not null and cannot be changed
+	Harl h;
 
-    public:
-
-    HumanA(std::string name, Weapon &weapon);
-    ~HumanA(void);
-    void	attack(void);
-};
+	h.complain("DEBUG");
+	h.complain("INFO");
+	h.complain("WARNING");
+	h.complain("ERROR");
+	return (0);
+}
