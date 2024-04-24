@@ -12,7 +12,7 @@
 
 NAME = brain
 
-CC		= g++
+CC		= c++
 FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 RM		= rm -rf
 SRC		= main.cpp
@@ -26,18 +26,23 @@ NO_COLOR    =   \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@printf "$(YELLOW)- Compiling $(NAME)... $(NO_COLOR)\n"
+	@echo "$(YELLOW)- Compiling $(NAME)... $(NO_COLOR)"
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-	@printf "$(GREEN)- Executable ready\n$(NO_COLOR)"
+	@echo "$(GREEN)- Executable ready$(NO_COLOR)"
+
+%.o: %.cpp
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	@$(RM) $(OBJ)
-	@printf "$(RED)- Objects removed$(NO_COLOR)\n"
+	@echo "$(RED)- Objects removed$(NO_COLOR)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@printf "$(YELLOW)- Executable removed$(NO_COLOR)\n"
+	@echo "$(YELLOW)- Executable removed$(NO_COLOR)"
 
 re: clean all
+
+-include $(DEP)
 
 .PHONY: all clean re fclean

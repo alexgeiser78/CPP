@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "./Zombie.hpp"
 
-Zombie::Zombie(std::string name)
+Zombie::Zombie(std::string name) //: _name(name)
 {
 	this->_name = name;
 	std::cout << "Zombie object " << this->_name << " created" << std::endl;

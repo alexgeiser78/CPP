@@ -15,9 +15,9 @@
 
 int replace(char **argv, std::string str)
 {
-    std::ofstream	output_file; //output file stream
-    int i;
-    int				pos; //position of the word searched
+    std::ofstream	        output_file; //output file stream
+    std::string::size_type  i;
+    std::string::size_type	pos; //position of the word searched
     i = 0;
 
     output_file.open(std::string(argv[1]) + ".replace"); //opening file
@@ -28,7 +28,7 @@ int replace(char **argv, std::string str)
     while(i < str.length())
     {
         pos = str.find(argv[2], i); //finds the position of the word searched, if not found returns -1
-		if (pos != -1 && pos == i)
+		if (pos != std::string::npos && pos == i)
 		{
 			output_file << argv[3]; //replaces the word searched with the word replacement
 			i += std::string(argv[2]).size() - 1; //skip the word replaced

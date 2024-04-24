@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 
-#include "Zombie.hpp"
+#include "./Zombie.hpp"
 
 /* Returns pointer to Zombie object allocated with new (heap)*/
 Zombie	*newZombie(std::string name);
@@ -32,6 +32,5 @@ int	main(void)
 -constructor is called with class Zombie object
 -announce function with name of Zombie object
 -randomChump function with constructor of Zombie object with new name and announce function
--destructor is called with class Zombie object and name of Zombie object
 -destructor is called with class Zombie object and name of Zombie object
 */
