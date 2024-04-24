@@ -13,7 +13,7 @@
 NAME = zombie2
 
 CC		= c++
-FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address -fsanitize=leak -fsanitize=undefined -fsanitize=bounds -fsanitize=null
 RM		= rm -rf
 SRC		= main.cpp Zombie.cpp ZombieHorde.cpp
 OBJ		= $(SRC:.cpp=.o)
