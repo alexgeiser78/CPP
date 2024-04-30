@@ -13,7 +13,7 @@
 NAME = canon
 
 CC		= c++
-FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address -fsanitize=leak -fsanitize=undefined -fsanitize=bounds -fsanitize=null
+FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address -fsanitize=undefined -fsanitize=bounds -fsanitize=null #-fsanitize=leak
 RM		= rm -rf
 SRC		= main.cpp Fixed.cpp
 OBJ		= $(SRC:.cpp=.o)

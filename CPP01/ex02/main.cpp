@@ -17,6 +17,13 @@ int	main(void)
 	std::string	string;
 	std::string	*stringPTR;
 
+	int a = 10;
+	int &b = a;
+
+	std::cout << b << std::endl;
+	b = 20;
+	std::cout << a << std::endl;
+
 	string = "HI THIS IS BRAIN";
 	stringPTR = &string;
 	std::string	&stringREF = string;
