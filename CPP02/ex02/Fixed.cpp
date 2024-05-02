@@ -39,11 +39,13 @@ Fixed::Fixed(Fixed const & copy)
 Fixed::Fixed(const int value): _value(value * PfloattoInt(2, this->_frac))
 {  
 	std::cout << "Int constructor called" << std::endl; 
+	_value = value << _frac;
 } 
 
 Fixed::Fixed(const float value): _value(value * PfloattoInt(2, this->_frac))
 {  
 	std::cout << "Float constructor called" << std::endl; 
+	_value = roundf(value * (1 << _frac));
 }
 
 //--------------functions----------------
