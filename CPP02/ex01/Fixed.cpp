@@ -63,9 +63,10 @@ Fixed::Fixed(const int value): _value(value * PfloattoInt(2, this->_frac))
 	std::cout << "Int constructor called" << std::endl; 
 } 
 
-Fixed::Fixed(const float value): _value(value * PfloattoInt(2, this->_frac))
+Fixed::Fixed(const float value): _value(value * PfloattoInt(2, this->_frac)) //it initializes the _value variable with the value passed as argument, it multiplies the value by 2^_frac, it is the same as shifting the value to the left by _frac bits
 {  
 	std::cout << "Float constructor called" << std::endl; 
+	_value = roundf(value * (1 << _frac)); // << is the left shift operator, it shifts the value to the left by _frac bits, it is the same as multiplying the value by 2^_frac, roundf rounds the value to the nearest integer value
 }
 
 std::ostream	&operator<<(std::ostream &str, Fixed const &fixed_nbr)  // definition of the operator <<, it takes a reference to an ostream object and a reference to a Fixed object, it returns a reference to an ostream object
