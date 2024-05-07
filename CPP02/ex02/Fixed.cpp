@@ -23,29 +23,29 @@ const int	Fixed::_frac = 8; //static variable of type const int and class Fixed,
 
 Fixed::Fixed(void): _value(0)
 {
-	std::cout << "Default constructor called" << std::endl; 
+//	std::cout << "Default constructor called" << std::endl; 
 }
 
 Fixed::~Fixed(void)
 {
-	std::cout << "Destructor called" << std::endl; 
+//	std::cout << "Destructor called" <<std::endl; 
 }
 
 Fixed::Fixed(Fixed const &copy)
 {
-	std::cout << "Copy constructor called" << std::endl;
+//	std::cout << "Copy constructor called" << std::endl;
 	*this = copy;
 }
 
 Fixed::Fixed(const int value): _value(value * PfloattoInt(2, this->_frac))
 {  
-	std::cout << "Int constructor called" << std::endl; 
+//	std::cout << "Int constructor called" << std::endl; 
 	_value = value << _frac; //shift to the left by _frac bits, converts the integer value to a fixed point number
 } 
 
 Fixed::Fixed(const float value): _value(value * PfloattoInt(2, this->_frac)) //it initializes the _value variable with the value passed as argument, it multiplies the value by 2^_frac, it is the same as shifting the value to the left by _frac bits
 {  
-	std::cout << "Float constructor called" << std::endl; 
+//	std::cout << "Float constructor called" << std::endl; 
 	_value = roundf(value * (1 << _frac)); // << is the left shift operator, it shifts the value to the left by _frac bits, it is the same as multiplying the value by 2^_frac, roundf rounds the value to the nearest integer value
 }
 
@@ -75,7 +75,7 @@ float	Fixed::toFloat(void) const   //fixed point number to float point number co
 
 Fixed	&Fixed::operator=(Fixed const &copy)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+//	std::cout << "Copy assignment operator called" << std::endl;
 	this->_value = copy.getRawBits();
 	return (*this);
 }
@@ -121,9 +121,9 @@ Fixed	&Fixed::operator--(void)
 
 Fixed	Fixed::operator++(int value) //a++
 {
-	Fixed	aux;
+	Fixed	aux; //default constructor is called
 
-	aux = *this;
+	aux = *this; //uses the copy assignment operator to copy the value of the object to the aux object
 
 	if (!value)
 		value = 1;
