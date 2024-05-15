@@ -2,11 +2,18 @@
 
 int main(void)
 {
+    ClapTrap Any;
     ClapTrap Alex("Alex");
-    Alex.attack("Zombie");
+    while (Alex.get_energyPoints() > 0)
+        Alex.attack("Zombie");
+
+    
 
     ClapTrap Zombie("Zombie");
-    Zombie.takeDamage(10);
-    Zombie.beRepaired(5);
-    
+    while(Zombie.get_hitPoints())
+    {
+    Zombie.takeDamage(2);
+    Zombie.beRepaired(1);
+    }
+    Zombie.takeDamage(1);
 }
