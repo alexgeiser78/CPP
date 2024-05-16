@@ -10,6 +10,10 @@ ScavTrap::ScavTrap(void)
 
 ScavTrap::ScavTrap(std::string const &name): ClapTrap(name)
 {
+    this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
+	this->_guardingGate = false;
 	std::cout << "ScavTrap from ClapTrap " << this->_name << " created." << std::endl;
 }
 

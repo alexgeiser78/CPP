@@ -12,6 +12,8 @@ class ScavTrap: public ClapTrap   //inheritance
         ~ScavTrap();
         ScavTrap &operator=(const ScavTrap &copy);
         void guardGate(void);
+    private:
+        bool _guardingGate;
 
 };
 
