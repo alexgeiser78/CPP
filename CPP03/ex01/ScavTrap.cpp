@@ -38,7 +38,7 @@ ScavTrap	&ScavTrap::operator=(ScavTrap const &copy)
 void	ScavTrap::guardGate(void)
 {
 	if (this->_hitPoints <= 0)
-		std::cout << "Cannot switch to gate-keeper mode because: ClapTrap " << this->_name << " is dead." << std::endl;
+		std::cout << "Can't switch to Guard Gate mode because: ClapTrap " << this->_name << " is dead." << std::endl;
 	else
-		std::cout << "ScavTrap from ClapTrap " << this->_name << " switched to mode: \"Guard Gate\"." << std::endl;
+		std::cout << "ScavTrap from ClapTrap " << this->_name << " is in Guard Gate mode." << std::endl;
 }

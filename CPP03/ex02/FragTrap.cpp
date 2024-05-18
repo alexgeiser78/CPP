@@ -36,7 +36,7 @@ FragTrap	&FragTrap::operator=(FragTrap const &copy)
 void	FragTrap::highFivesGuys(void)
 {
 	if (this->_hitPoints <= 0)
-		std::cout << "Cannot high five because: ClapTrap " << this->_name << " is dead." << std::endl;
+		std::cout << "Can't high five because: ClapTrap " << this->_name << " is dead." << std::endl;
 	else
-		std::cout << "FragTrap from ClapTrap " << this->_name << " says: \"HIGH FIVE EVERYONE! :)\"." << std::endl;
+		std::cout << "FragTrap from ClapTrap " << this->_name << " says: HIGH FIVE!" << std::endl;
 }

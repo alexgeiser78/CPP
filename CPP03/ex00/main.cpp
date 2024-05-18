@@ -4,6 +4,9 @@ int main(void)
 {
     ClapTrap Any;
     ClapTrap Alex("Alex");
+    ClapTrap CopyOfAlex(Alex);
+    
+
     while (Alex.get_energyPoints() > 0)
         Alex.attack("Zombie");
 

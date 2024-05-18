@@ -11,6 +11,7 @@ int main(void)
     
 
     ScavTrap Zombie("Zombie");
+    Zombie.guardGate();
     while(Zombie.get_hitPoints())
     {
     Zombie.takeDamage(20);

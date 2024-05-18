@@ -3,12 +3,12 @@
 int main(void)
 {
     ClapTrap Any;
-    FragTrap offsetof;
+    FragTrap Other;
     FragTrap Alex("Alex");
+    Alex.highFivesGuys();
+
     while (Alex.get_energyPoints() > 0)
         Alex.attack("Zombie");
-
-    
 
     FragTrap Zombie("Zombie");
     while(Zombie.get_hitPoints())

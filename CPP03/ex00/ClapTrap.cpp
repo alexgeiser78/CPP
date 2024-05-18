@@ -14,7 +14,7 @@ ClapTrap::~ClapTrap(void)
 
 ClapTrap::ClapTrap(std::string const &name): _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "ClapTrap " << this->_name << " created." << std::endl;
+	std::cout << "ClapTrap " << this->_name << " created by copy." << std::endl;
 }
 
 
@@ -59,7 +59,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 		this->_hitPoints -= amount;
 	}
 	else
-		std::cout << "STOP! ClapTrap " << this->_name << " is already dead :(" << std::endl;
+		std::cout << "STOP! ClapTrap " << this->_name << " is dead" << std::endl;
 	if (this->_hitPoints < 0)
 		this->_hitPoints = 0;
 
@@ -74,7 +74,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		this->_energyPoints--;
 	}
 	if (this->_hitPoints <= 0)
-		std::cout << "Cannot repair because: ClapTrap " << this->_name << " is dead." << std::endl;
+		std::cout << "Can't repair because ClapTrap " << this->_name << " is dead." << std::endl;
 	else if (!this->_energyPoints)
 		std::cout << "ClapTrap " << this->_name << " is out of energy points!" << std::endl;
 }
