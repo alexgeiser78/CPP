@@ -1,13 +1,14 @@
 #include "Animal.hpp"
 
-Animal::Animal(void): _type("undefined")
+
+Animal::Animal(void): _type("Any animal")
 {
-	std::cout << "Animal " << this->_type << " created with default constructor." << std::endl;
+	std::cout << "Animal: " << this->_type << " created with default constructor." << std::endl;
 }
 
 Animal::Animal(std::string const &type): _type(type)
 {
-	std::cout << "Animal " << this->_type << " created." << std::endl;
+	std::cout << "Animal created with type " << this->_type << std::endl;
 }
 
 Animal::Animal(Animal const &copy)
@@ -40,5 +41,5 @@ void	Animal::setType(const std::string &type)
 
 void	Animal::makeSound(void) const
 {
-	std::cout << "Animal " << this->_type << " made a sound!" << std::endl;
+	std::cout << "Any animal " << this->_type << " made a sound!" << std::endl;
 }

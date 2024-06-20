@@ -15,7 +15,7 @@ NAME = poly
 CC		= c++
 FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address -fsanitize=undefined -fsanitize=bounds -fsanitize=null #-fsanitize=leak
 RM		= rm -rf
-SRC		= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+SRC		= main.cpp Animal.cpp Pet.cpp Wrong.cpp
 OBJ		= $(SRC:.cpp=.o)
 
 GREEN       =   \033[1;32m

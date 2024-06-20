@@ -1,11 +1,11 @@
 #include "Pet.hpp"
 
-Dog::Dog(void): _type("Dog")
+Dog::Dog(void): Animal("Dog")
 {
     std::cout << "Dog from Animal " << Animal::_type << " created with default constructor." << std::endl;
 }
 
-Dog::Dog(std::string const &type): _type(type)
+Dog::Dog(std::string const &type): Animal(type)
 {
     std::cout << "Dog from Animal " << Animal::_type << " created." << std::endl;
 }
@@ -35,35 +35,32 @@ void	Dog::makeSound(void) const
 
 ////////////////////////////////////////////////////////
 
-Cat::Cat(void): _type("Cat")
-{
-	std::cout << "Cat from Animal " << Animal::_type << " created with default constructor." << std::endl;
+Cat::Cat(void) : Animal("Cat") {
+    std::cout << "Cat created with default constructor." << std::endl;
 }
 
-Cat::Cat(std::string const &type):Animal(type), _type("Cat")
-{
-	std::cout << "Cat from Animal " << Animal::_type << " created." << std::endl;
+Cat::Cat(std::string const &type) : Animal(type) {
+    std::cout << "Cat created with type " << type << "." << std::endl;
 }
 
-Cat::Cat(Cat const &copy): Animal(copy)
-{
-	*this = copy;
-	std::cout << "Cat from Animal " << Animal::_type << " copied." << std::endl;
+Cat::Cat(Cat const &copy) : Animal(copy) {
+    *this = copy;
+    std::cout << "Cat copied." << std::endl;
 }
 
-Cat::~Cat(void)
-{
-	std::cout << "Cat from Animal " << Animal::_type << " destroyed." << std::endl;
+Cat::~Cat(void) {
+    std::cout << "Cat destroyed." << std::endl;
 }
 
-Cat const	&Cat::operator=(Cat const &copy)
-{
-	std::cout << "Assignment operator for Cat from Animal " << Animal::_type << " called." << std::endl;
-	Animal::operator=(copy);
-	return (*this);
+Cat const &Cat::operator=(Cat const &copy) {
+    std::cout << "Assignment operator for Cat called." << std::endl;
+    if (this != &copy) {
+        Animal::operator=(copy);
+    }
+    return *this;
 }
 
-void	Cat::makeSound(void) const
-{
-	std::cout << "Cat From Animal " << Animal::_type << " goes Maow!" << std::endl;
+void Cat::makeSound(void) const {
+    std::cout << "Cat From Animal goes Maow!" << std::endl;
 }
+
