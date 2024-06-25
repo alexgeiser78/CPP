@@ -19,8 +19,7 @@ class Animal
         std::string const	&getType(void) const;
 		void				setType(std::string const &type);
 
-        virtual Brain       &get_brain(void) const; //
-   
+        virtual Brain       &getBrain(void) const = 0; //pure virtual
 
-        virtual void		makeSound(void) const; //virtual means that it can be modified by derived classes, important for polymorphism
+        virtual void		makeSound(void) const = 0;  //virtual means that it can be modified by derived classes, important for polymorphism
 };

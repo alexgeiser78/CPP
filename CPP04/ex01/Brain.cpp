@@ -1,19 +1,19 @@
 #include "Brain.hpp"
 
-Brain::Brain(void)
+Brain::Brain(void) : _ideas()
 {
-	std::cout << "Brain created with default constructor." << std::endl;
+	std::cout << "Brain created with Brain default constructor." << std::endl;
+}
+
+Brain::~Brain(void)
+{
+	std::cout << "Brain destroyed with the brain default destructor." << std::endl;
 }
 
 Brain::Brain(Brain const &copy)
 {
 	*this = copy;
-	std::cout << "Brain copied." << std::endl;
-}
-
-Brain::~Brain(void)
-{
-	std::cout << "Brain destroyed." << std::endl;
+	std::cout << "Brain copied with the brain copy constructor." << std::endl;
 }
 
 Brain const	&Brain::operator=(Brain const &copy)

@@ -1,9 +1,13 @@
 #include "Animal.hpp"
 
-
 Animal::Animal(void): _type("Any animal")
 {
-	std::cout << "Animal: " << this->_type << " created with default constructor." << std::endl;
+	std::cout << "Animal: " << this->_type << " created with Animal default constructor." << std::endl;
+}
+
+Animal::~Animal(void)
+{
+	std::cout << "Animal " << this->_type << " destroyed with animal destructor." << std::endl;
 }
 
 Animal::Animal(std::string const &type): _type(type)
@@ -14,12 +18,7 @@ Animal::Animal(std::string const &type): _type(type)
 Animal::Animal(Animal const &copy)
 {
 	*this = copy;
-	std::cout << "Animal " << this->_type << " copied." << std::endl;
-}
-
-Animal::~Animal(void)
-{
-	std::cout << "Animal " << this->_type << " destroyed." << std::endl;
+	std::cout << "Animal " << this->_type << " copied with Animal copy constructor." << std::endl;
 }
 
 Animal const	&Animal::operator=(Animal const &copy)
@@ -38,9 +37,15 @@ void	Animal::setType(const std::string &type)
 {
 	this->_type = type;
 }
-
+/*
 void	Animal::makeSound(void) const
 {
 	std::cout << "Any animal " << this->_type << " made a sound!" << std::endl;
 }
 
+Brain &Animal::getBrain(void) const 
+{
+	std::cout << "Animal " << this->_type << " has no brain." << std::endl;
+	return (new Brain());
+}
+*/

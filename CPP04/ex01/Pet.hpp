@@ -1,11 +1,12 @@
 #pragma once // include guard to avoid multiple header inclusion
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Dog: public Animal
 {
-	//private:
-	//	std::string	_type;
+	private:
+		Brain*	_brain; // Pointer to Brain object
 	public:
 		/* Constructors & Destructors */
 		Dog(void);
@@ -15,19 +16,16 @@ class Dog: public Animal
 
 		/* Basic Operators */
 		Dog const	&operator=(Dog const &copy);
-
-		/* Getters & Setters */
-		//std::string const	&getType(void) const;
-		//void				setType(std::string const &type);
-
 		/* Main Member Functions */
 		void	makeSound(void) const;
+		virtual Brain       &getBrain(void) const;
 };
 
 class Cat: public Animal
 {
 	private:
-		std::string	_type;
+		Brain*	_brain;
+
 	public:
 		/* Constructors & Destructors */
 		Cat(void);
@@ -41,7 +39,7 @@ class Cat: public Animal
 		/* Getters & Setters */
 		//std::string const	&getType(void) const;
 		//void				setType(std::string const &type);
-
+		virtual Brain       &getBrain(void) const;
 		/* Main Member Functions */
 		void	makeSound(void) const;
 };
