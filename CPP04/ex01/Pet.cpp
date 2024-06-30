@@ -1,89 +1,81 @@
 #include "Pet.hpp"
 
-Dog::Dog(void): Animal("Dog"), _brain(new Brain())
+Dog::Dog(void)
 {
-    std::cout << "Dog from Animal " << Animal::_type << " created with default constructor." << std::endl;
+	std::cout << "Dog constructor called" << std::endl;
+	this->_type = "Dog";
+	this->_brain = new Brain();
 }
 
-Dog::Dog(std::string const &type): Animal(type)
+Dog::Dog(const Dog &obj) : Animal(obj)
 {
-    std::cout << "Dog from Animal " << Animal::_type << " created." << std::endl;
-}
-
-Dog::Dog(Dog const &copy): Animal(copy), _brain(new Brain(*copy._brain))
-{
-    *this = copy;
-    std::cout << "Dog from Animal " << Animal::_type << " copied." << std::endl;
+	std::cout << "Dog copy constructor called" << std::endl;
+	this->_type = obj._type;
+	this->_brain = new Brain(*obj._brain); //creates a new brain and copies the content of the brain of the obj
 }
 
 Dog::~Dog(void)
 {
-    delete _brain;
-    std::cout << "Dog from Animal " << Animal::_type << " destroyed." << std::endl;
+	std::cout << "Dog destructor called" << std::endl;
+	delete this->_brain;
 }
 
-Dog const	&Dog::operator=(Dog const &copy)
+Dog &Dog::operator=(const Dog &obj)
 {
-    std::cout << "Assignment operator for Dog from Animal " << Animal::_type << " called." << std::endl;
-    if (this != &copy) {
-        Animal::operator=(copy);
-        delete _brain;  // Libérer l'ancien cerveau
-        _brain = new Brain(*copy._brain);  // Copier le cerveau
-    }
-    return (*this);
-}
-
-Brain &Dog::getBrain() const 
-{
-    return *_brain;
+	if (this == &obj)
+		return (*this);
+	this->_type = obj._type;
+	this->_brain = obj._brain;
+	return (*this);
 }
 
 void	Dog::makeSound(void) const
 {
-	std::cout << "Dog From Animal " << Animal::_type << " goes WafWaf!" << std::endl;
+	std::cout << "Woof woof" << std::endl;
 }
 
+std::string	Dog::getType(void) const
+{
+	return (this->_type);
+}
 ////////////////////////////////////////////////////////
 
-Cat::Cat(void) : Animal("Cat"), _brain(new Brain())
+Cat::Cat(void)
 {
-    std::cout << "Cat created with default cat constructor." << std::endl;
+	std::cout << "Cat constructor called" << std::endl;
+	this->_type = "Cat";
+	this->_brain = new Brain();
 }
 
-Cat::Cat(std::string const &type) : Animal(type) {
-    std::cout << "Cat created with type " << type << "." << std::endl;
-}
-
-Cat::Cat(Cat const &copy) : Animal(copy), _brain(new Brain(*copy._brain)) 
+Cat::Cat(const Cat &obj) : Animal(obj)
 {
-    *this = copy;
-    std::cout << "Cat copied." << std::endl;
+	std::cout << "Cat copy constructor called" << std::endl;
+	this->_type = obj._type;
+	this->_brain = new Brain(*obj._brain);
 }
 
-Cat::~Cat(void) 
+Cat::~Cat(void)
 {
-    delete _brain;
-    std::cout << "Cat destroyed." << std::endl;
+	std::cout << "Cat destructor called" << std::endl;
+	delete this->_brain;
 }
 
-Cat const &Cat::operator=(Cat const &copy) {
-    std::cout << "Assignment operator for Cat called." << std::endl;
-    if (this != &copy) 
-    {
-        Animal::operator=(copy);
-        delete _brain;
-        _brain = new Brain(*copy._brain);
-    }
-    return *this;
-}
-
-void Cat::makeSound(void) const 
+Cat	&Cat::operator=(const Cat &obj)
 {
-    std::cout << "Cat From Animal goes Maow!" << std::endl;
+	std::cout << "Cat assignation operator called" << std::endl;
+	if (this == &obj)
+		return (*this);
+	this->_type = obj._type;
+	this->_brain = obj._brain;
+	return (*this);
 }
 
-Brain &Cat::getBrain() const 
+void	Cat::makeSound(void) const
 {
-    return *_brain;
+	std::cout << "Meowwwwwww" << std::endl;
 }
 
+std::string	Cat::getType(void) const
+{
+	return (this->_type);
+}

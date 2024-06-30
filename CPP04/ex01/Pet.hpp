@@ -3,43 +3,30 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class Dog: public Animal
+class Dog : public Animal
 {
-	private:
-		Brain*	_brain; // Pointer to Brain object
 	public:
-		/* Constructors & Destructors */
 		Dog(void);
-		Dog(std::string const &type);
-		Dog(Dog const &copy);
-		virtual ~Dog(void);
+		Dog(const Dog &obj);
+		~Dog(void);
+		Dog &operator=(const Dog &obj);
 
-		/* Basic Operators */
-		Dog const	&operator=(Dog const &copy);
-		/* Main Member Functions */
-		void	makeSound(void) const;
-		virtual Brain       &getBrain(void) const;
+		std::string	getType(void) const;
+		void		makeSound(void) const;
+	private:
+		Brain *_brain;
 };
 
-class Cat: public Animal
+class	Cat : public Animal
 {
-	private:
-		Brain*	_brain;
-
 	public:
-		/* Constructors & Destructors */
 		Cat(void);
-		Cat(std::string const &type);
-		Cat(Cat const &copy);
-		virtual ~Cat(void);
+		Cat(const Cat &obj);
+		~Cat(void);
+		Cat	&operator=(const Cat &obj);
 
-		/* Basic Operators */
-		Cat const	&operator=(Cat const &copy);
-
-		/* Getters & Setters */
-		//std::string const	&getType(void) const;
-		//void				setType(std::string const &type);
-		virtual Brain       &getBrain(void) const;
-		/* Main Member Functions */
-		void	makeSound(void) const;
+		std::string	getType(void) const;
+		void		makeSound(void) const;
+	private:
+		Brain	*_brain;
 };

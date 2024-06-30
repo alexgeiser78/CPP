@@ -1,38 +1,31 @@
 #include "Brain.hpp"
 
-Brain::Brain(void) : _ideas()
+Brain::Brain(void)
 {
-	std::cout << "Brain created with Brain default constructor." << std::endl;
+	std::cout << "Brain constructor called" << std::endl;
+	for (int i = 0; i < 100; i++)
+		this->_ideas[i] = "idea";
+}
+
+Brain::Brain(const Brain &obj)
+{
+	std::cout << "Brain copy constructo called" << std::endl;
+	for (int i = 0; i < 100; i++)
+		this->_ideas[i] = obj._ideas[i];
 }
 
 Brain::~Brain(void)
 {
-	std::cout << "Brain destroyed with the brain default destructor." << std::endl;
+	std::cout << "Brain destructor called" << std::endl;
 }
 
-Brain::Brain(Brain const &copy)
+Brain &Brain::operator=(const Brain &obj)
 {
-	*this = copy;
-	std::cout << "Brain copied with the brain copy constructor." << std::endl;
-}
-
-Brain const	&Brain::operator=(Brain const &copy)
-{
-	std::copy(copy._ideas, copy._ideas + 100, this->_ideas);
-	std::cout << "Assignment operator for Brain called." << std::endl;
+	std::cout << "Brain assignation operator called" << std::endl;
+	if (this != &obj)
+	{
+		for (int i = 0; i < 100; i++)
+			this->_ideas[i] = obj._ideas[i];
+	}
 	return (*this);
 }
-
-std::string const	&Brain::getIdea(int const &index) const
-{
-	if (index >= 0 && index < 100)
-		return (this->_ideas[index]);
-	return (this->_ideas[0]);
-}
-
-void	Brain::setIdea(std::string const &idea, int const &index)
-{
-	if (index >= 0 && index < 100)
-		this->_ideas[index] = idea;
-}
-
