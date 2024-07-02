@@ -12,6 +12,7 @@ static void	testEval(void)
 	Dog basic; // creates a Dog object named basic.
 
 	Dog tmp = basic; // creates another Dog object named tmp and copies the state of basic into it. This tests the copy constructor of the Dog class.
+	tmp = basic;
 }
 
 int	main(void)

@@ -22,11 +22,14 @@ CCat::~CCat(void)
 
 CCat	&CCat::operator=(const CCat &obj)
 {
-	std::cout << "CCat assignation operator called" << std::endl;
+	std::cout << "Cat assignation operator called" << std::endl;
 	if (this == &obj)
-		return (*this);
-	this->_type = obj._type;
-	this->_brain = obj._brain;
+		if (this != &obj)
+    {
+        this->_type = obj._type;
+        delete this->_brain;  // Free the existing memory
+        this->_brain = new Brain(*obj._brain); // Deep copy of Brain
+    }
 	return (*this);
 }
 

@@ -9,7 +9,7 @@ Brain::Brain(void)
 
 Brain::Brain(const Brain &obj)
 {
-	std::cout << "Brain copy constructo called" << std::endl;
+	std::cout << "Brain copy constructor called" << std::endl;
 	for (int i = 0; i < 100; i++)
 		this->_ideas[i] = obj._ideas[i];
 }
