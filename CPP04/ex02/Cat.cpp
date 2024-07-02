@@ -20,18 +20,18 @@ Cat::~Cat(void)
 	delete this->_brain;
 }
 
-Cat	&Cat::operator=(const Cat &obj)
+Cat &Cat::operator=(const Cat &obj)
 {
-	std::cout << "Cat assignation operator called" << std::endl;
-	if (this == &obj)
-		if (this != &obj)
+    std::cout << "Cat assignation operator called" << std::endl;
+    if (this != &obj)  // Correct condition check for self-assignment
     {
         this->_type = obj._type;
         delete this->_brain;  // Free the existing memory
         this->_brain = new Brain(*obj._brain); // Deep copy of Brain
     }
-	return (*this);
+    return (*this);
 }
+
 
 void	Cat::makeSound(void) const
 {

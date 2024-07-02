@@ -24,7 +24,6 @@ CCat	&CCat::operator=(const CCat &obj)
 {
 	std::cout << "Cat assignation operator called" << std::endl;
 	if (this == &obj)
-		if (this != &obj)
     {
         this->_type = obj._type;
         delete this->_brain;  // Free the existing memory
