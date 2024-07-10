@@ -10,14 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = poly
+NAME = burocrat
 
 CC		= c++
-FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address -fsanitize=undefined -fsanitize=bounds -fsanitize=null -fsanitize=leak
+FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address -fsanitize=undefined -fsanitize=bounds -fsanitize=null #-fsanitize=leak
 RM		= rm -rf
-SRC		= Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp \
-		WrongCat.cpp Brain.cpp AAnimal.cpp \
-		CCat.cpp main.cpp
+SRC		= Burocrat.cpp main.cpp
 OBJ		= $(SRC:.cpp=.o)
 
 GREEN       =   \033[1;32m
