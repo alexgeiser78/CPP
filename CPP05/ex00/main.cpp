@@ -1,1 +1,6 @@
-#include "Burocrat.hpp"
+#include "Bureaucrat.hpp"
+
+int main()
+{
+    
+}
