@@ -74,22 +74,16 @@ int main()
         std::cerr << "Standard exception: " << exception.what() << std::endl;
     }
     std::cout << "\n" << std::endl;
-
+    
     try
     {
         std::cout << "under range" << std::endl;
         Bureaucrat	burocrat004("Donald", 0);
         std::cout << burocrat004 << std::endl;
     }
-    /*
     catch (const Bureaucrat::GradeTooHighException &exception)
 	{
 		std::cerr << "Standard exception: " << exception.what() << std::endl;
-	}*/
-    catch(const std::exception &e)
-    {
-        std::cerr << "Standard exception: " << e.what() << std::endl;
-    }
-
+	}
     return 0;
 }
