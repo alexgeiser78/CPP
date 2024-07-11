@@ -13,9 +13,9 @@
 NAME = buro
 
 CC		= c++
-FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address -fsanitize=undefined -fsanitize=bounds -fsanitize=null #-fsanitize=leak
+FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address -fsanitize=undefined -fsanitize=bounds -fsanitize=null -fsanitize=leak
 RM		= rm -rf
-SRC		= Bureaucrat.cpp main.cpp
+SRC		= Bureaucrat.cpp Form.cpp main.cpp
 OBJ		= $(SRC:.cpp=.o)
 
 GREEN       =   \033[1;32m
