@@ -44,10 +44,10 @@ int	main(void)
 	{
 		Intern random3;
 		AForm *fail = random3.makeForm("fail", "random_fail");
-		Bureaucrat anotherTest3("anotherTest3", 1);
+		Bureaucrat anotherBureaucrat3("anotherBureaucrat3", 1);
 
-		anotherTest3.signAForm(*fail);
-		anotherTest3.executeForm(*fail);
+		anotherBureaucrat3.signAForm(*fail);
+		anotherBureaucrat3.executeForm(*fail);
 	}
 	catch (std::exception &e)
 	{
