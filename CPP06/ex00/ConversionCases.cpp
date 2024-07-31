@@ -76,7 +76,7 @@ void intConvert(const std::string &str)
 void floatConvert(const std::string &str)
 {
     float f = std::atof(str.c_str()); //ASCII to float
-    bool  closeTof = std::fabs(f - static_cast<int>(f)) < 0.0000000000001; //check if a floating-point number f is effectively an integer
+    bool  closeTof = std::fabs(f - static_cast<int>(f)) < 0.000001; //check if a floating-point number f is effectively an integer
                                                                            //computes the absolute difference between the number and the its integer part, made to have a tolerance               
     std::cout << "char: ";    
     if (f < 0 || f > 127)
@@ -103,7 +103,7 @@ void floatConvert(const std::string &str)
 void doubleConvert(const std::string &str)
 {
     double d = std::atof(str.c_str());
-    bool  closeTod = std::fabs(d - static_cast<int>(d)) < 0.0000000000001;
+    bool  closeTod = std::fabs(d - static_cast<int>(d)) < 1e-9;
 
     std::cout << "char: ";
     if (d < 0 || d > 127)
