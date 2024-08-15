@@ -54,6 +54,23 @@ Array<T> &Array<T>::operator=(Array const &copy)
 	return (*this);
 }
 
+template <typename T>
+T &Array<T>::operator[](unsigned int i)
+{
+	if (i >= _size)
+		throw OutOfBounds();
+	return (_arr[i]);
+}
+
+template <typename T>
+T const &Array<T>::operator[](unsigned int i) const
+{
+	if (i >= _size)
+		throw OutOfBounds();
+	return (_arr[i]);
+}
+
+
 // Methods
 template <typename T>
 unsigned int Array<T>::size() const
@@ -61,6 +78,10 @@ unsigned int Array<T>::size() const
 	return (_size);
 }
 
-
+template <typename T>
+const char *Array<T>::OutOfBounds::what() const throw()
+{
+	return ("Index out of bounds");
+}
 
 #endif
