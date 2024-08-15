@@ -1,7 +1,7 @@
 #ifndef ITER_HPP
 #define ITER_HPP
 
-# include<iostream>
+#include <iostream>
 
 template<typename T_array, typename T_function> //function template that can work with two types: T_array and T_function
                                                 //T_array is a placeholder for the type of the array

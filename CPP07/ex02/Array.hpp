@@ -1,7 +1,7 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
-# include<iostream>
+#include <iostream>
 
 template<typename T> //class template Array that contains elements of type T
 class Array
@@ -12,12 +12,12 @@ class Array
     public:
 		// Constructors
 		Array();
-		//Array(unsigned int n);
-		//Array(Array const &copy);
-		//~Array();
+		Array(unsigned int n);
+		Array(Array const &copy);
+		~Array();
 
         // Operators
-		//Array			&operator=(Array const &copy);
+		Array			&operator=(Array const &copy);
 
         // Methods
         unsigned int	size() const;
