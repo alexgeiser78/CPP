@@ -1,7 +1,7 @@
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
-//# include <algorithm>
+# include <algorithm> //std::find 
 # include <exception>
 # include <iostream>
 
@@ -10,7 +10,6 @@ class NotFoundException : public std::exception
 public:
     const char *what () const throw () //redifine the what method of the exception class, return a pointer to a const char
     {
-        std::cout << what << std::endl; //
         return "Element not found";
     }
 };
@@ -23,12 +22,11 @@ typename T::iterator easyfind(T &container, int n) //easyfind function returns a
 
     iter = std::find(container.begin(), container.end(), n); //find method, search n in the container "container", returns an iterator pointing to the first element in the range [first, last). If no n is found, the function returns last.
     if (iter == container.end()) //container.end != last element of the container, it is the element after the last element of the container  
-		throw NotFoundException();
-	return (iter);
+		{
+        std::cout << n << ": ";
+                throw NotFoundException();
+        }
+    return (iter);
 } 
-
-
-
-
 
 #endif
