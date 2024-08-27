@@ -9,8 +9,8 @@
 class Span
 {
     private:
-        unsigned int _n;
-        std::vector<int> _vec;
+        unsigned int _n;       //slots counter
+        std::vector<int> _vec; //container
     public:
         //constructors
         Span();
@@ -21,7 +21,7 @@ class Span
 
         //members
         void addNumber(int n);
-        void addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+        void addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end); //add a range of numbers
         int shortestSpan();
         int longestSpan();
 
