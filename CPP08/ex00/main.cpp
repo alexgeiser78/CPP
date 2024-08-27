@@ -72,4 +72,5 @@ int main(void)
 }
 
 //container "forward_list" is C11
-//container "queue", "stack", "priority_queue" is not iterable
+//container adaptors: "queue", "stack", "priority_queue" are not iterable
+//associative containers: "map", "multimap", "set", "multiset" are not iterable
