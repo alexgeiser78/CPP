@@ -5,6 +5,8 @@
 BitcoinExchange::BitcoinExchange()
 {
     std::cout << "BitcoinExchange default constructor called" << std::endl;
+	std::cout << "DB catching" << std::endl;
+	dataBaseCatcher();
 }
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const &other)
@@ -32,6 +34,13 @@ BitcoinExchange::~BitcoinExchange()
     std::cout << "BitcoinExchange destructor called" << std::endl;
 }
 
+// Getters
+
+std::map<std::string, float> const &BitcoinExchange::getQuotes() const
+{
+	return (_quotes);
+}
+
 // member functions
 
 void BitcoinExchange::currencyExchange(char const *filename)
@@ -45,11 +54,13 @@ void BitcoinExchange::currencyExchange(char const *filename)
     if (line != "date | value")
 		throw InvalidColumnFormat();
 
-    std::cout << "input file:" << std::endl;
+    std::cout << "input file reading" << std::endl;
+	std::cout << "computing..." << std::endl;
+
     while (std::getline(file, line)) //puts each line of the file into "line"
 	{
         std::istringstream stringStream(line); //std::istringstream is a stream class to read from strings	
-        std::cout << stringStream.str() << std::endl;
+        //std::cout << stringStream.str() << std::endl;
 
         std::string date;
 		std::string value;      
@@ -78,9 +89,40 @@ void BitcoinExchange::currencyExchange(char const *filename)
     file.close();
 }
 
+void BitcoinExchange::dataBaseCatcher()
+{
+	std::ifstream file("data.csv");
+	if (!file.is_open())
+		throw CouldNotOpenFile();
+
+	std::string line;
+	std::getline(file, line);
+	if (line != "date,exchange_rate")
+            throw InvalidColumnFormat();
+	
+	while (std::getline(file, line))
+	{
+		std::istringstream stringStream(line);
+		//std::cout << stringStream.str() << std::endl;
+
+		std::string date;
+		std::string price;   
+        std::getline(stringStream, date, ',');
+        std::getline(stringStream, price, ',');
+		
+		float priceValue;
+		std::istringstream priceStream(price); //convert the string to a float
+		if (!(priceStream >> priceValue)) //convert the string to a float and stores it in priceValue, ">>" extraction operator
+				throw InvalidPriceFormat();
+		_quotes[date] = priceValue; //store the date and the price in the map
+	}	
+
+	file.close();		
+}
+
 void BitcoinExchange::multiplyer(std::string const &date, float price)
 {
-	std::cout << "-multiplyer-" << std::endl;  
+	//std::cout << "-multiplyer-" << std::endl;  
     
     std::map<std::string, float>::iterator it = _quotes.find(date); //find the date in the map
 	 
@@ -102,12 +144,14 @@ void BitcoinExchange::multiplyer(std::string const &date, float price)
         else if (it2 == _quotes.begin()) // Check if it2 is at the beginning
         {
             // If 'it2' points to the beginning, all entries are after 'date'
-            std::cout << date << " | " << price << " | " << price * it2->second << std::endl;
+			std::cout << "No equal date found in _quotes map for: " << date << std::endl;
+			std::cout << date << " | " << price << " | " << price * it2->second << std::endl;
         }
         else
         {
             // Move the iterator to the previous element
             it2--;
+			std::cout << "No equal date found in _quotes map for: " << date << std::endl;
             std::cout << date << " | " << price << " | " << price * it2->second << std::endl;
         }
     }
