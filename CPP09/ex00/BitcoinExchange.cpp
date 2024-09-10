@@ -56,11 +56,12 @@ void BitcoinExchange::currencyExchange(char const *filename)
 
     std::cout << "input file reading" << std::endl;
 	std::cout << "computing..." << std::endl;
+	std::cout << std::endl;
 
     while (std::getline(file, line)) //puts each line of the file into "line"
 	{
         std::istringstream stringStream(line); //std::istringstream is a stream class to read from strings	
-        //std::cout << stringStream.str() << std::endl;
+        std::cout << stringStream.str() << std::endl;
 
         std::string date;
 		std::string value;      
@@ -122,41 +123,32 @@ void BitcoinExchange::dataBaseCatcher()
 
 void BitcoinExchange::multiplyer(std::string const &date, float price)
 {
-	//std::cout << "-multiplyer-" << std::endl;  
-    
-    std::map<std::string, float>::iterator it = _quotes.find(date); //find the date in the map
-	 
-    if (it != _quotes.end()) //if the date is found in the "_quotes" map
-		{
-        std::cout << "exact date found in _quotes map: " << it->first << std::endl;
-        std::cout << date << " | " << price << " | " << price * it->second << std::endl; //it->first = key, it->second = value
-        }
-    else //if the date is not found
-	{
-        std::map<std::string, float>::iterator it2 = _quotes.lower_bound(date); // Lower bound returns an iterator pointing to the first element not less than 'date'
-        
-        // Check if it2 is equal to _quotes.end(), which means no element is greater or equal to date
-        if (it2 == _quotes.end())
+    std::map<std::string, float>::iterator it = _quotes.find(date);
+
+    if (it != _quotes.end()) // Exact match found
+    {
+        std::cout << "Exact match in _quotes map: " << it->first << " quote: " << it->second << std::endl;
+        std::cout << date << " => " << price << " = " << price * it->second << std::endl;
+    }
+    else // No exact match
+    {
+        std::map<std::string, float>::iterator it2 = _quotes.lower_bound(date); // search for the first element that is not less than date (>= date)
+
+        if (it2 == _quotes.begin()) // No earlier date in the DB 
         {
-            // No valid date found (all dates are before 'date')
-            std::cout << "No equal date found in _quotes map for: " << date << std::endl;
+            std::cout << "No earlier date in the database, using the earliest available date: " << it2->first << " quote:" << it2->second << std::endl;
+            std::cout << date << " => " << price << " = " << price * it2->second << std::endl;
         }
-        else if (it2 == _quotes.begin()) // Check if it2 is at the beginning
+        else // Closest earlier date
         {
-            // If 'it2' points to the beginning, all entries are after 'date'
-			std::cout << "No equal date found in _quotes map for: " << date << std::endl;
-			std::cout << date << " | " << price << " | " << price * it2->second << std::endl;
-        }
-        else
-        {
-            // Move the iterator to the previous element
-            it2--;
-			std::cout << "No equal date found in _quotes map for: " << date << std::endl;
-            std::cout << date << " | " << price << " | " << price * it2->second << std::endl;
+            if (it2->first != date)
+                --it2; // go back one element
+            std::cout << "No exact match for date: " << date << ", using closest earlier date: " << it2->first << " quote: " << it2->second << std::endl;
+            std::cout << it2->first << " => " << price << " = " << price * it2->second << std::endl;
         }
     }
+	std::cout << std::endl;
 }
-
 
 //isValidator functions
 
@@ -193,17 +185,20 @@ double BitcoinExchange::isValidPrice(std::string const &value)
 	if (!(priceStream >> priceValue)) //try to convert the string to a float and stores it in priceValue
 	{
 		std::cout << "Error: bad input => " << priceValue << std::endl;
+		std::cout << std::endl;
 		return (-1);
 	}
 
 	if (priceValue < 0) //check if the value is positive
 	{
 		std::cout << "Error: not a positive number => " << priceValue << std::endl;
+		std::cout << std::endl;
 		return (-1);
 	}
 	else if (priceValue > 1000) //limit fixed in the subject
 	{
 		std::cout << "Error: too large number => " << priceValue << std::endl;
+		std::cout << std::endl;
 		return (-1);
 	}
 	
