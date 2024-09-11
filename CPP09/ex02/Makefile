@@ -10,12 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = RPN
+NAME = PmergeMe
 
 CC		= c++
 FLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address 
 RM		= rm -rf
-SRC		= main.cpp RPN.cpp
+SRC		= main.cpp PmergeMe.cpp
 OBJ		= $(SRC:.cpp=.o)
 
 GREEN       =   \033[1;32m
