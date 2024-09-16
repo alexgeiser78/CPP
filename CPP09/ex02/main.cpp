@@ -12,24 +12,25 @@ int main(int argc, char **argv)
     clock_t start1 = clock();
     std::list< std::pair<int, int> > sort1; //list of a pair of 2 int
     std::list<int> resultList;
-    //int if_arg_is_unpair_value = -1;
+    int if_arg_is_unpair_value = -1;
         
         try
         {
             before_print(argv);
-            pairing(&sort1, argv);
-            pairing_print(sort1);
+            pairing(&sort1, argv, &if_arg_is_unpair_value);
+            pairing_print(sort1, if_arg_is_unpair_value);
             sorting(&sort1);
-            sorting_print(sort1);
-            //mergSorting(sort1.begin(), sort1.end());
-            mergSorting_print(sort1);
-            
-            
-            
-            //after_print(resultList);
+            sorting_print(sort1, if_arg_is_unpair_value);
+            mergSorting(sort1.begin(), sort1.end(), 0);
+            mergSorting_print(sort1, if_arg_is_unpair_value);
+            init_resultList(&resultList, sort1);
+            resultList_print(resultList);
+            insert_resultList(sort1, &resultList, if_arg_is_unpair_value);
+                    
+            after_print(resultList);
             
             clock_t end1 = clock();
-            std::cout << "Time: " << static_cast<double>(end1 - start1) / 1000 <<" millisec" << std::endl;
+            std::cout << "Time to process a range of " << resultList.size() << " elements with std::list: " << static_cast<double>(end1 - start1) / 1000 <<" ms" << std::endl;
         }
 
         catch (const std::exception &e)
@@ -66,12 +67,6 @@ int main(int argc, char **argv)
         {   
             std::cerr << e.what() << '\n';
 	    }
-
-    
-
-
-
-
 
     return (0);
 }
