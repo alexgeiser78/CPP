@@ -8,7 +8,7 @@ int main(int argc, char **argv)
         return(1);
     }
 
-    std::cout << "1st container: LIST" << std::endl;
+    //std::cout << "1st container: LIST" << std::endl;
     clock_t start1 = clock();
     std::list< std::pair<int, int> > sort1; //list of a pair of 2 int
     std::list<int> resultList;
@@ -18,15 +18,14 @@ int main(int argc, char **argv)
         {
             before_print(argv);
             pairing(&sort1, argv, &if_arg_is_unpair_value);
-            printer(sort1, if_arg_is_unpair_value, "Pairing:");
+            //printer(sort1, if_arg_is_unpair_value, "Pairing:");
             sorting(&sort1);
-            printer(sort1, if_arg_is_unpair_value, "Sorting:");
+            //printer(sort1, if_arg_is_unpair_value, "Sorting:");
             mergSorting(sort1.begin(), sort1.end(), 0);
-            printer(sort1, if_arg_is_unpair_value, "MergeSort:");
+            //printer(sort1, if_arg_is_unpair_value, "MergeSort:");
             init_resultList(&resultList, sort1);
-            resultList_print(resultList);
+            //resultList_print(resultList);
             insert_resultList(sort1, &resultList, if_arg_is_unpair_value);
-                    
             after_print(resultList);
             
             clock_t end1 = clock();
@@ -38,7 +37,7 @@ int main(int argc, char **argv)
 			std::cerr << e.what() << '\n';
 	    }
 
-    std::cout << "2nd container: DEQUE" << std::endl;
+    //std::cout << "2nd container: DEQUE" << std::endl;
     clock_t start2 = clock();
     std::deque< std::pair<int, int> > sort2;
     std::deque<int> resultList2;
@@ -49,17 +48,18 @@ int main(int argc, char **argv)
         {
             before_print(argv);          
             pairing2(&sort2, argv, &if_arg_is_unpair_value2);
-            printer2(sort2, if_arg_is_unpair_value2, "Pairing:");
+            //printer2(sort2, if_arg_is_unpair_value2, "Pairing:");
             sorting2(&sort2);
-            printer2(sort2, if_arg_is_unpair_value2, "Sorting:");           
+            //printer2(sort2, if_arg_is_unpair_value2, "Sorting:");           
             mergSorting2(sort2.begin(), sort2.end(), 0);
-            printer2(sort2, if_arg_is_unpair_value2, "MergeSort:");          
+            //printer2(sort2, if_arg_is_unpair_value2, "MergeSort:");          
             init_resultList2(&resultList2, sort2);
-            resultList_print2(resultList2);
+            //resultList_print2(resultList2);
             insert_resultList2(sort2, &resultList2, if_arg_is_unpair_value2);
             after_print2(resultList2);
+            
             clock_t end2 = clock();
-            std::cout << "Time: " << static_cast<double>(end2 - start2) / 1000 <<" millisec" << std::endl;
+            std::cout << "Time to process a range of " << resultList2.size() << " elements with std::deque: " << static_cast<double>(end2 - start2) / 1000 <<" ms" << std::endl;
         }
 
         catch (const std::exception &e)

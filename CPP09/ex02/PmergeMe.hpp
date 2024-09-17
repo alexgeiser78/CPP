@@ -7,6 +7,12 @@
 #include <deque>
 #include <cstdlib> //atoi
 # include <algorithm> //inplace_merge
+# include <iterator> //advance
+# include <utility> //pair
+# include <string> //string
+# include <exception> //exception
+#include <set>
+
 
 
 void before_print(char **argv);
@@ -29,6 +35,10 @@ void resultList_print2(std::deque<int> &resultList2);
 void binary_search_insertion2(std::deque<int> *resultList2, std::deque<int>::iterator end, int value);
 void insert_resultList2(std::deque<std::pair<int, int> > sort2, std::deque<int> *resultList2, int if_arg_is_unpair_value2);
 void after_print2(std::deque<int> resultList2);
+
+bool is_non_negative_integer(const std::string& str);
+
+
 
 
 #endif

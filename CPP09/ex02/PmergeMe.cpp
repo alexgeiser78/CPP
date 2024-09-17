@@ -1,31 +1,63 @@
 # include "PmergeMe.hpp"
 
-void before_print(char **argv)
+
+bool is_non_negative_integer(const std::string& str) 
 {
-    std::cout << "Before: ";
-        for (int i = 1; argv[i]; i++)
-        {
-            std::cout << argv[i] << " ";
-        }
-        std::cout << std::endl;
+    if (str.empty()) 
+        return false;
+
+    std::string::const_iterator it = str.begin();
+    std::string::const_iterator end = str.end();
+
+    while (it != end) 
+    {
+        if (!std::isdigit(*it))     
+            return false;
+        ++it;
+    }
+    return true;
 }
 
-void pairing(std::list<std::pair<int, int> > *sort1, char **argv, int *if_arg_is_unpair_value)
+void before_print(char **argv) 
 {
-    int i  = 1;
-
-    while (argv[i])
+    std::set<int> seen; //set to store and sort the values and check for duplicates
+    std::cout << "Before: ";
+    for (int i = 1; argv[i]; i++) 
     {
-        if (argv[i] && argv[i + 1]) //check if there remains 2 values
+        std::string arg = argv[i];
+        if (!is_non_negative_integer(arg)) 
         {
-            std::pair<int, int> pair_temp(std::atoi(argv[i]), std::atoi(argv[i + 1])); //atoi conv and make_pair
-            sort1->push_back(pair_temp); //insert pair_temp to sort1
-            i += 2; //increment i by 2 since 2 values have been paired
+            std::cerr << "Error: Invalid input \"" << arg << "\". All inputs must be non-negative integers." << std::endl;
+            exit(EXIT_FAILURE);
         }
-        else
+        int value = std::atoi(argv[i]);
+        if (seen.find(value) != seen.end()) 
+        {
+            std::cerr << "Error: Duplicate value detected \"" << value << "\"." << std::endl;
+            exit(EXIT_FAILURE);
+        }
+        seen.insert(value);
+        std::cout << argv[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+void pairing(std::list<std::pair<int, int> > *sort1, char **argv, int *if_arg_is_unpair_value) 
+{
+    int i = 1;
+
+    while (argv[i]) 
+    {
+        if (argv[i] && argv[i + 1]) 
+        {
+            std::pair<int, int> pair_temp(std::atoi(argv[i]), std::atoi(argv[i + 1]));
+			sort1->push_back(pair_temp);
+			i += 2;
+        }
+        else 
         {
             *if_arg_is_unpair_value = std::atoi(argv[i]);
-			i++;
+            i++;
         }
     }
 }
@@ -100,22 +132,11 @@ void init_resultList(std::list<int> *resultList, std::list<std::pair<int, int> >
 //resultList = {5, 6, 8} (for)
 //resultList = {3, 5, 6, 8} (if!)
 
-void init_resultList_print(std::list<int> &resultList)
-{
-    std::cout << "init_resultList_print: " << std::endl;
-    std::list<int>::iterator it;
-    for (it = resultList.begin(); it != resultList.end(); ++it)
-    {
-        std::cout << *it << " " ;
-    }
-    std::cout << std::endl;
-}
-
 void binary_search_insertion(std::list<int> *resultList, std::list<int>::iterator end, int value)
 {
     std::list<int>::iterator place_to_insert_it = std::lower_bound(resultList->begin(), end, value); //find the position to insert the value
     resultList->insert(place_to_insert_it, value); //insert the value
-    std::cout << "Inserting value: " << value << " into resultList at position: " << std::distance(resultList->begin(), place_to_insert_it) << std::endl;
+    //std::cout << "Inserting value: " << value << " into resultList at position: " << std::distance(resultList->begin(), place_to_insert_it) << std::endl;
 }
 
 void insert_resultList(std::list<std::pair<int, int> > sort1, std::list<int> *resultList, int if_arg_is_unpair_value)
@@ -132,7 +153,7 @@ void insert_resultList(std::list<std::pair<int, int> > sort1, std::list<int> *re
 		sort1_pair_it = sort1.begin();
 		std::advance(sort1_pair_it, Jacobsthal[jacobsthal_index] - 1); //positions the iterator "sort1_pair_it" at the Jacobsthal number
         
-        std::cout << "Jacobsthal index: " << Jacobsthal[jacobsthal_index] << " | Inserting pair: (" << sort1_pair_it->first << ", " << sort1_pair_it->second << ")" << std::endl;
+        //std::cout << "Jacobsthal index: " << Jacobsthal[jacobsthal_index] << " | Inserting pair: (" << sort1_pair_it->first << ", " << sort1_pair_it->second << ")" << std::endl;
         
         last_jacob_insert_it = sort1_pair_it; //stores the iterator "sort1_pair_it" at the last Jacobsthal number
 
@@ -141,11 +162,11 @@ void insert_resultList(std::list<std::pair<int, int> > sort1, std::list<int> *re
 		{
 			insert_index_finder_it = std::find(resultList->begin(), resultList->end(), sort1_pair_it->second);
 			binary_search_insertion(resultList, insert_index_finder_it, sort1_pair_it->first);
-			std::cout << "Inserting first of pair: " << sort1_pair_it->first << std::endl;
-            resultList_print(*resultList);
+			//std::cout << "Inserting first of pair: " << sort1_pair_it->first << std::endl;
+            //resultList_print(*resultList);
             sort1_pair_it--;
 			insertion_counter++;
-            std::cout << "insertion_counter: " << insertion_counter << std::endl;
+            //std::cout << "insertion_counter: " << insertion_counter << std::endl;
 		}
         jacobsthal_index++;
 
@@ -158,7 +179,7 @@ void insert_resultList(std::list<std::pair<int, int> > sort1, std::list<int> *re
 		while (sort1_pair_it != last_jacob_insert_it)
 		{
 			insert_index_finder_it = std::find(resultList->begin(), resultList->end(), sort1_pair_it->second);
-			std::cout << "Inserting remaining pair: (" << sort1_pair_it->first << ", " << sort1_pair_it->second << ")" << std::endl;
+			//std::cout << "Inserting remaining pair: (" << sort1_pair_it->first << ", " << sort1_pair_it->second << ")" << std::endl;
             binary_search_insertion(resultList, insert_index_finder_it, sort1_pair_it->first);
 			sort1_pair_it--;
 		}
@@ -166,7 +187,7 @@ void insert_resultList(std::list<std::pair<int, int> > sort1, std::list<int> *re
 
 	if (if_arg_is_unpair_value != -1)
 	{
-        std::cout << "Inserting unpaired value: " << if_arg_is_unpair_value << std::endl;
+        //std::cout << "Inserting unpaired value: " << if_arg_is_unpair_value << std::endl;
 		binary_search_insertion(resultList, resultList->end(), if_arg_is_unpair_value);
 	}
     
@@ -175,7 +196,7 @@ void insert_resultList(std::list<std::pair<int, int> > sort1, std::list<int> *re
 
 void resultList_print(std::list<int> &resultList)
 {
-    std::cout << "resultList_print: " << std::endl;
+    //std::cout << "resultList_print: " << std::endl;
     std::list<int>::iterator it;
     for (it = resultList.begin(); it != resultList.end(); ++it)
     {
@@ -197,25 +218,26 @@ void after_print(std::list<int> resultList)
 
 //DEQUE
 
-void pairing2(std::deque<std::pair<int, int> > *sort2, char **argv, int *if_arg_is_unpair_value2)
+void pairing2(std::deque<std::pair<int, int> > *sort2, char **argv, int *if_arg_is_unpair_value2) 
 {
-	int i = 1;
+    int i = 1;
 
-	while (argv[i])
-	{
-		if (argv[i] && argv[i + 1])
-		{
-			std::pair<int, int> pair_temp(std::atoi(argv[i]), std::atoi(argv[i + 1]));
-			sort2->push_back(pair_temp);
-			i += 2;
-		}
-		else
-		{
-			*if_arg_is_unpair_value2 = std::atoi(argv[i]);
-			i++;
-		}
-	}
+    while (argv[i]) 
+    {
+        if (argv[i] && argv[i + 1]) 
+        {
+            std::pair<int, int> pair_temp(std::atoi(argv[i]), std::atoi(argv[i + 1]));
+            sort2->push_back(pair_temp);
+            i += 2;
+        }
+        else 
+        {
+            *if_arg_is_unpair_value2 = std::atoi(argv[i]);
+            i++;
+        }
+    }
 }
+
 
 void printer2(const std::deque<std::pair<int, int> > &sort2, int if_arg_is_unpair_value, const std::string &str)
 {
@@ -270,7 +292,7 @@ void init_resultList2(std::deque<int> *resultList2, std::deque<std::pair<int, in
 
 void resultList_print2(std::deque<int> &resultList2)
 {
-    std::cout << "resultList_print2: " << std::endl;
+    //std::cout << "resultList_print2: " << std::endl;
     std::deque<int>::iterator it;
     for (it = resultList2.begin(); it != resultList2.end(); ++it)
     {
@@ -300,18 +322,18 @@ void insert_resultList2(std::deque<std::pair<int, int> > sort2, std::deque<int> 
 		sort2_pair_it = sort2.begin() + (Jacobsthal2[jacobsthal_index2] - 1);
 		last_jacob_insert_it2 = sort2_pair_it; // Store the iterator at the last Jacobsthal number
         
-        std::cout << "Jacobsthal index: " << Jacobsthal2[jacobsthal_index2] << " | Inserting pair: (" << sort2_pair_it->first << ", " << sort2_pair_it->second << ")" << std::endl;
+        //std::cout << "Jacobsthal index: " << Jacobsthal2[jacobsthal_index2] << " | Inserting pair: (" << sort2_pair_it->first << ", " << sort2_pair_it->second << ")" << std::endl;
         int insertion_counter2 = 0; // Counter to keep track of the number of insertions
 
 		while (Jacobsthal2[jacobsthal_index2] - insertion_counter2 > Jacobsthal2[jacobsthal_index2 - 1])  
 		{
 			insert_index_finder_it2 = std::find(resultList2->begin(), resultList2->end(), sort2_pair_it->second);
 			binary_search_insertion2(resultList2, insert_index_finder_it2, sort2_pair_it->first);
-			std::cout << "Inserting first of pair: " << sort2_pair_it->first << std::endl;
-            resultList_print2(*resultList2);
+			//std::cout << "Inserting first of pair: " << sort2_pair_it->first << std::endl;
+            ///resultList_print2(*resultList2);
             sort2_pair_it--;
 			insertion_counter2++;
-            std::cout << "insertion_counter: " << insertion_counter2 << std::endl;
+            //std::cout << "insertion_counter: " << insertion_counter2 << std::endl;
 		}
         jacobsthal_index2++;
 	}
@@ -324,7 +346,7 @@ void insert_resultList2(std::deque<std::pair<int, int> > sort2, std::deque<int> 
 		while (sort2_pair_it != last_jacob_insert_it2)
 		{
 			insert_index_finder_it2 = std::find(resultList2->begin(), resultList2->end(), sort2_pair_it->second);
-			std::cout << "Inserting remaining pair: (" << sort2_pair_it->first << ", " << sort2_pair_it->second << ")" << std::endl;
+			//std::cout << "Inserting remaining pair: (" << sort2_pair_it->first << ", " << sort2_pair_it->second << ")" << std::endl;
             binary_search_insertion2(resultList2, insert_index_finder_it2, sort2_pair_it->first);
 			sort2_pair_it--;
 		}
@@ -332,7 +354,7 @@ void insert_resultList2(std::deque<std::pair<int, int> > sort2, std::deque<int> 
 
 	if (if_arg_is_unpair_value2 != -1)
 	{
-        std::cout << "Inserting unpaired value: " << if_arg_is_unpair_value2 << std::endl;
+        //std::cout << "Inserting unpaired value: " << if_arg_is_unpair_value2 << std::endl;
 		binary_search_insertion2(resultList2, resultList2->end(), if_arg_is_unpair_value2);
 	}
 }
