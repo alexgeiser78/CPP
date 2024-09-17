@@ -18,11 +18,11 @@ int main(int argc, char **argv)
         {
             before_print(argv);
             pairing(&sort1, argv, &if_arg_is_unpair_value);
-            pairing_print(sort1, if_arg_is_unpair_value);
+            printer(sort1, if_arg_is_unpair_value, "Pairing:");
             sorting(&sort1);
-            sorting_print(sort1, if_arg_is_unpair_value);
+            printer(sort1, if_arg_is_unpair_value, "Sorting:");
             mergSorting(sort1.begin(), sort1.end(), 0);
-            mergSorting_print(sort1, if_arg_is_unpair_value);
+            printer(sort1, if_arg_is_unpair_value, "MergeSort:");
             init_resultList(&resultList, sort1);
             resultList_print(resultList);
             insert_resultList(sort1, &resultList, if_arg_is_unpair_value);
@@ -40,10 +40,24 @@ int main(int argc, char **argv)
 
     std::cout << "2nd container: DEQUE" << std::endl;
     clock_t start2 = clock();
+    std::deque< std::pair<int, int> > sort2;
+    std::deque<int> resultList2;
+	int if_arg_is_unpair_value2 = -1;
+
 
         try
         {
-            before_print(argv);
+            before_print(argv);          
+            pairing2(&sort2, argv, &if_arg_is_unpair_value2);
+            printer2(sort2, if_arg_is_unpair_value2, "Pairing:");
+            sorting2(&sort2);
+            printer2(sort2, if_arg_is_unpair_value2, "Sorting:");           
+            mergSorting2(sort2.begin(), sort2.end(), 0);
+            printer2(sort2, if_arg_is_unpair_value2, "MergeSort:");          
+            init_resultList2(&resultList2, sort2);
+            resultList_print2(resultList2);
+            insert_resultList2(sort2, &resultList2, if_arg_is_unpair_value2);
+            after_print2(resultList2);
             clock_t end2 = clock();
             std::cout << "Time: " << static_cast<double>(end2 - start2) / 1000 <<" millisec" << std::endl;
         }
@@ -52,27 +66,10 @@ int main(int argc, char **argv)
         {
 			std::cerr << e.what() << '\n';
 	    }
-
-    std::cout << "3rd container: VECTOR" << std::endl;
-    clock_t start3 = clock();
-
-        try
-        {
-            before_print(argv);
-            clock_t end3 = clock();
-            std::cout << "Time: " << static_cast<double>(end3 - start3) / 1000 <<" millisec" << std::endl;
-        }
-
-        catch (const std::exception &e)
-        {   
-            std::cerr << e.what() << '\n';
-	    }
-
     return (0);
 }
 
 
-// why > > ?
 
 //Ford Johnson algorithm: merge-insertion sort, which is a hybrid sorting algorithm, combining the best of both merge sort and insertion sort.
 //The algorithm is as follows:
