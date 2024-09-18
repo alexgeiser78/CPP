@@ -28,13 +28,13 @@ void before_print(char **argv)
         if (!is_non_negative_integer(arg)) 
         {
             std::cerr << "Error: Invalid input \"" << arg << "\". All inputs must be non-negative integers." << std::endl;
-            exit(EXIT_FAILURE);
+            exit(1);
         }
         int value = std::atoi(argv[i]);
         if (seen.find(value) != seen.end()) 
         {
             std::cerr << "Error: Duplicate value detected \"" << value << "\"." << std::endl;
-            exit(EXIT_FAILURE);
+            exit(1);
         }
         seen.insert(value);
         std::cout << argv[i] << " ";
@@ -369,6 +369,25 @@ void after_print2(std::deque<int> resultList2)
 	}
 	std::cout << '\n';
 }
+
+// workflow:  45 23 34 78 12 56 
+
+/*
+pairing : {45, 23}, {34, 78}, {12, 56} 
+sorting : {23, 45}, {34, 78}, {12, 56}
+mergesorting : {23, 45}, {12, 56}, {34, 78}
+init_resultList : {23, 45, 56, 78} (pending 12, 34)
+
+jacobstahl : 1, 3, 5, 11, ... // position in the sort1 list
+
+init_resultList : {23, 45, 56, 78} (pending 12, 34)
+jacobstahl index:                            1  2
+so sort1[1] to insert first because it's jacobsthal[0] = 1
+than sort1[3] is jacobsthal[1] = 3
+than sort1[5] is jacobsthal[2] = 5
+resultList : 12, 23, 34, 45, 56, 78
+adding unpair value if it exist 
+*/
 
 
 
